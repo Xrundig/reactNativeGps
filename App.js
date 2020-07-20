@@ -1,19 +1,31 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createAppContainer} from 'react-navigation'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+import CurrentPosition from './screens/currentPosition'
+import CreateRoute from './screens/createRoute'
+import AddPoint from './screens/addPoint'
+import EditPoint from './screens/editPoint'
+
+const MainNavigator = createStackNavigator({
+  'CurrentPosition' : CurrentPosition,
+  'CreateRoute' : CreateRoute,
+  'AddPoint' : AddPoint,
+  'EditPoint' : EditPoint,
+},{
+  initialRouteName: 'CurrentPosition',
+})
+
+const AppContainer = createAppContainer(MainNavigator);
+
+export default class App extends React.Component {
+  state = {
+  }
+
+  render(){
+    return (
+      < AppContainer />
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
